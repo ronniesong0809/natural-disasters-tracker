@@ -5,10 +5,29 @@
 .map {
   width: 100vw;
   height: 100vh;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .marker {
   font-size: 2rem;
   color: red;
+}
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.blue-circle {
+  animation-delay: 0.1s;
+}
+
+.green-circle {
+  animation-delay: 0.2s;
+}
+
+.red-circle {
+  animation-delay: 0.3s;
 }
