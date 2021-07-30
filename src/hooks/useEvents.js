@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import axios from "axios";
+import axios from "axios";
 
 const useEventsData = () => {
   const [eventsData, setEventsData] = useState([]);
@@ -8,13 +8,10 @@ const useEventsData = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-
-      const res = await fetch(
+      const res = await axios.get(
         "https://eonet.sci.gsfc.nasa.gov/api/v2.1/events"
       );
-      const { events } = await res.json();
-
-      setEventsData(events);
+      setEventsData(res.data.events);
       setLoading(false);
     };
 
