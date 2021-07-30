@@ -1,7 +1,8 @@
 import React from "react";
 import GoogleMaps from "google-map-react";
+import Marker from "./Marker";
 
-const Map = ({center, zoom}) => {
+const Map = ({ center, zoom }) => {
   return (
     <div className="map">
       <GoogleMaps
@@ -10,7 +11,9 @@ const Map = ({center, zoom}) => {
         }}
         defaultCenter={center}
         defaultZoom={zoom}
-      ></GoogleMaps>
+      >
+        <Marker lat={center.lat} lng={center.lng} />
+      </GoogleMaps>
     </div>
   );
 };
