@@ -1,7 +1,10 @@
+import { useState } from "react";
 import GoogleMap from "google-map-react";
 import Marker from "./Marker";
+import MessageBox from "./MessageBox";
 
 const Map = ({ center, zoom, events }) => {
+  const [info, setInfo] = useState(null);
   const markers = events.map(event => {
     if (event.categories[0].id === 8) {
       return (
@@ -9,6 +12,15 @@ const Map = ({ center, zoom, events }) => {
           key={event.id}
           lat={event.geometries[0].coordinates[1]}
           lng={event.geometries[0].coordinates[0]}
+          onClick={() =>
+            setInfo({
+              id: event.id,
+              title: event.title,
+              description: event.description,
+              type: event.geometries[0].type,
+              date: event.geometries[0].date
+            })
+          }
         />
       );
     }
@@ -26,6 +38,7 @@ const Map = ({ center, zoom, events }) => {
       >
         {markers}
       </GoogleMap>
+      {info && <MessageBox info={info} />}
     </div>
   );
 };
