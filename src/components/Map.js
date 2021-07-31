@@ -1,30 +1,37 @@
 import { useState } from "react";
 import GoogleMap from "google-map-react";
-import Marker from "./Marker";
+import { WildfireMarker, StormMarker } from "./Marker";
 import MessageBox from "./MessageBox";
 
 const Map = ({ center, zoom, events }) => {
   const [info, setInfo] = useState(null);
   const markers = events.map(event => {
-    if (event.categories[0].id === 8) {
-      return (
-        <Marker
-          key={event.id}
-          lat={event.geometries[0].coordinates[1]}
-          lng={event.geometries[0].coordinates[0]}
-          onClick={() =>
-            setInfo({
-              id: event.id,
-              title: event.title,
-              description: event.description,
-              type: event.geometries[0].type,
-              date: event.geometries[0].date
-            })
-          }
-        />
-      );
-    }
-    return null;
+    const id = event.id;
+    const category = event.categories[0].id;
+    const title = event.title;
+    const description = event.description;
+    const type = event.geometries[0].type;
+    const date = event.geometries[0].date;
+
+    return event.categories[0].id === 8 ? (
+      <WildfireMarker
+        key={id}
+        lat={event.geometries[0].coordinates[1]}
+        lng={event.geometries[0].coordinates[0]}
+        onClick={() =>
+          setInfo({ id, category, title, description, type, date })
+        }
+      />
+    ) : event.categories[0].id === 10 ? (
+      <StormMarker
+        key={id}
+        lat={event.geometries[0].coordinates[1]}
+        lng={event.geometries[0].coordinates[0]}
+        onClick={() =>
+          setInfo({ id, category, title, description, type, date })
+        }
+      />
+    ) : null;
   });
 
   return (
