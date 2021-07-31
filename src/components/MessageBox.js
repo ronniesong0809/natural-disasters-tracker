@@ -1,4 +1,5 @@
 import { ReactComponent as Wildfire } from "../assets/wildfire.svg";
+import Dayjs from "react-dayjs";
 
 const MessageBox = ({ info }) => {
   return (
@@ -18,7 +19,10 @@ const MessageBox = ({ info }) => {
           Type: <strong>{info.type}</strong>
         </li>
         <li>
-          Date: <strong>{Date(info.date)}</strong>
+          Date:{" "}
+          <strong>
+            <Dayjs format="ddd, MMM D, YYYY h:mm A Z">{info.date}</Dayjs>
+          </strong>
         </li>
       </ul>
     </div>
