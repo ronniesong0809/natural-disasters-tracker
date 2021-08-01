@@ -1,14 +1,23 @@
 import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
 
 const WildfireMarker = ({ lat, lng, onClick }) => {
   return (
-    <div className="text-3xl text-red-400" onClick={onClick}>
+    <motion.div
+      className="text-3xl text-red-400"
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: Math.random() + 1 }}
+      whileHover={{ opacity: 1, scale: 1.2, transition: { duration: 0.5 } }}
+      whileTap={{ scale: 0.9, transition: { duration: 0.5 } }}
+      onClick={onClick}
+    >
       <Icon
         className="icon"
         icon="ant-design:environment-twotone"
         style={{ transform: "translate(-50%, -100%)" }}
       />
-    </div>
+    </motion.div>
   );
 };
 
