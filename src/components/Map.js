@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import GoogleMap from "google-map-react";
 import { WildfireMarker, StormMarker } from "./Marker";
 import MessageBox from "./MessageBox";
+import { motion } from "framer-motion";
 
 const Map = ({ center, zoom, events }) => {
   const [info, setInfo] = useState(null);
+  const constraintsRef = useRef(null);
   const markers = events.map(event => {
     const id = event.id;
     const category = event.categories[0].id;
@@ -35,7 +37,7 @@ const Map = ({ center, zoom, events }) => {
   });
 
   return (
-    <div className="map">
+    <motion.div className="map" ref={constraintsRef}>
       <GoogleMap
         bootstrapURLKeys={{
           key: process.env.REACT_APP_GOOGLE_MAP_API
@@ -45,8 +47,8 @@ const Map = ({ center, zoom, events }) => {
       >
         {markers}
       </GoogleMap>
-      {info && <MessageBox info={info} />}
-    </div>
+      {info && <MessageBox info={info} constraintsRef={constraintsRef} />}
+    </motion.div>
   );
 };
 
