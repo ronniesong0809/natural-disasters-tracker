@@ -16,12 +16,12 @@ const MessageBox = ({ info, setInfo, constraintsRef }) => {
       drag
       dragConstraints={constraintsRef}
     >
-      <bottom
+      <div
         className="absolute top-0 right-0 bg-blue-500 hover:bg-blue-700 m-2 px-4 py-2 text-white font-bold rounded-2xl"
         onClick={clickHandler}
       >
         X
-      </bottom>
+      </div>
       {info.category === 8 && <Wildfire className="m-auto w-20" />}
       {info.category === 10 && <Strom className="m-auto w-20" />}
       <strong>{info.title}</strong>
