@@ -47,7 +47,13 @@ const Map = ({ center, zoom, events }) => {
       >
         {markers}
       </GoogleMap>
-      {info && <MessageBox info={info} constraintsRef={constraintsRef} />}
+      {info && (
+        <MessageBox
+          info={info}
+          setInfo={setInfo}
+          constraintsRef={constraintsRef}
+        />
+      )}
     </motion.div>
   );
 };

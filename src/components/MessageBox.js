@@ -3,7 +3,11 @@ import { ReactComponent as Strom } from "../assets/storm.svg";
 import Dayjs from "react-dayjs";
 import { motion } from "framer-motion";
 
-const MessageBox = ({ info, constraintsRef }) => {
+const MessageBox = ({ info, setInfo, constraintsRef }) => {
+  const clickHandler = e => {
+    setInfo(null);
+  };
+
   return (
     <motion.div
       className="messageBox absolute bottom-0 left-0 m-8 max-w-full p-3 z-50 bg-gray-800 text-gray-200 bg-opacity-80 rounded-2xl shadow-2xl"
@@ -12,6 +16,12 @@ const MessageBox = ({ info, constraintsRef }) => {
       drag
       dragConstraints={constraintsRef}
     >
+      <bottom
+        className="absolute top-0 right-0 bg-blue-500 hover:bg-blue-700 m-2 px-4 py-2 text-white font-bold rounded-2xl"
+        onClick={clickHandler}
+      >
+        X
+      </bottom>
       {info.category === 8 && <Wildfire className="m-auto w-20" />}
       {info.category === 10 && <Strom className="m-auto w-20" />}
       <strong>{info.title}</strong>
