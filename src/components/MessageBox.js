@@ -2,6 +2,7 @@ import { ReactComponent as Wildfire } from "../assets/wildfire.svg";
 import { ReactComponent as Strom } from "../assets/storm.svg";
 import Dayjs from "react-dayjs";
 import { motion } from "framer-motion";
+import { Icon } from "@iconify/react";
 
 const MessageBox = ({ info, setInfo, constraintsRef }) => {
   const clickHandler = e => {
@@ -16,16 +17,25 @@ const MessageBox = ({ info, setInfo, constraintsRef }) => {
       drag
       dragConstraints={constraintsRef}
     >
-      <div
-        className="absolute top-0 right-0 bg-blue-500 hover:bg-blue-700 m-2 px-4 py-2 text-white font-bold rounded-2xl"
+      <motion.div
+        className="absolute top-0 right-0 "
+        whileHover={{ scale: 1.1, rotate: 180 }}
+        whileTap={{
+          scale: 0.9,
+          rotate: -180,
+          borderRadius: "100%"
+        }}
         onClick={clickHandler}
       >
-        X
-      </div>
-      {info.category === 8 && <Wildfire className="m-auto w-20" />}
-      {info.category === 10 && <Strom className="m-auto w-20" />}
+        <Icon
+          className="text-4xl text-blue-500 hover:text-blue-300 m-2"
+          icon="ci:off-close"
+        />
+      </motion.div>
+      {info.category === "wildfires" && <Wildfire className="m-auto w-20" />}
+      {info.category === "severeStorms" && <Strom className="m-auto w-20" />}
       <strong>{info.title}</strong>
-      <ul>
+      <ul className="text-white opacity-60 text-sm">
         <li>
           ID: <strong>{info.id}</strong>
         </li>

@@ -6,7 +6,11 @@ const WildfireMarker = ({ lat, lng, onClick }) => {
     <motion.div
       className="text-3xl text-red-400 hover:text-red-600"
       initial={{ opacity: 0, y: -100 }}
-      animate={{ opacity: 1, y: 0, transition: { delay: Math.random() * 4 + 1 } }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        transition: { delay: Math.random() * 4 + 1 }
+      }}
       whileHover={{ opacity: 1, scale: 1.2, transition: { duration: 0.1 } }}
       whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
       onClick={onClick}

@@ -8,9 +8,7 @@ const useEventsData = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const res = await axios.get(
-        "https://eonet.sci.gsfc.nasa.gov/api/v2.1/events"
-      );
+      const res = await axios.get(process.env.REACT_APP_NASA_EONENT_API);
       setEventsData(res.data.events);
       setLoading(false);
     };
